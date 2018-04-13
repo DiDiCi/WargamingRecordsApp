@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuScreen" />
-        <activity android:name=".RecordsScreen"></activity>
+        <activity android:name=".RecordsScreen" />
+        <activity android:name=".UnitDisplayScreen"></activity>
     </application>
 
 </manifest>

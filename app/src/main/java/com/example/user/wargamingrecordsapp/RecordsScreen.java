@@ -1,9 +1,15 @@
 package com.example.user.wargamingrecordsapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +60,18 @@ public class RecordsScreen extends AppCompatActivity {
         unitList.add(new Unit("Unit 20"));
 
         // specify an adapter (see also next example)
-        adapter = new UnitRecordAdapter(this, unitList);
+        adapter = new UnitRecordAdapter(this, unitList, new CustomItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                openUnitRecordPage(unitList.get(position));
+            }
+        });
         mRecyclerView.setAdapter(adapter);
+    }
+
+    public void openUnitRecordPage(Unit unit) {
+        Intent intent = new Intent(this, UnitDisplayScreen.class);
+        intent.putExtra("unitName", unit);
+        startActivity(intent);
     }
 }
